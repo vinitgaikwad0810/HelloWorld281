@@ -25,10 +25,10 @@ var DB = require('mongodb').Db,
     async = require('async') ;
 
 var MongoClient = require('mongodb').MongoClient;
- var url1 = "mongodb://52.24.136.109:27017/test";
+ var url1 = "mongodb://52.24.136.109:27017/test?w=0&readPreference=secondary";
 
- var url2 = "mongodb://52.35.94.222:27017/test";
- var url3 = "mongodb://52.33.102.9:27017/test";
+ var url2 = "mongodb://52.35.94.222:27017/test?w=0&readPreference=secondary";
+ var url3 = "mongodb://52.33.102.9:27017/test?w=0&readPreference=secondary";
 
 
 
@@ -39,7 +39,7 @@ db.collection('cmpe281', function(err, collection) {
         collection.find( {key: "1"}).toArray( function(err, results) {
 
         	  response.setHeader("Content-Type", "text/html");	
-              response.end("SERVER 2:"+results[0].value + "SERVER 1:"+results[0].value + "SERVER 3:"+results[0].value);
+              response.end("SERVER 2:"+results[0].value);
            //   output += "SERVER 2:"+results[0].value;
 
         } ) ;
@@ -49,7 +49,7 @@ db.collection('cmpe281', function(err, collection) {
 });
 });
 
-/*
+
 app.get('/server3', function(request, response) {
 MongoClient.connect(url3, function(err, db) {
 db.collection('cmpe281', function(err, collection) {
@@ -66,8 +66,8 @@ db.collection('cmpe281', function(err, collection) {
 });
 });
 });
-*/
-/*
+
+
 app.get('/server1', function(request, response) {
  
  
@@ -88,8 +88,7 @@ db.collection('cmpe281', function(err, collection) {
     
 });
 });
-
-*/
+});
 
 
 
